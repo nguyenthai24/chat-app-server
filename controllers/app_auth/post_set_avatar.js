@@ -3,16 +3,21 @@ const brcypt = require('bcrypt');
 
 module.exports = async (req, res, next) => {
     const id = req.params.id;
-    console.log(123)
+
     if (!id) throw new Error('User not found');
     const { image } = req.body;
 
     try {
-        const updateUser =  await UserModel.findOneAndUpdate({ _id: id }, { avatarImage: image, isAvatarImageSet: true });
-        return res.body = {
+        const updateUser = await UserModel.findOneAndUpdate(
+            { _id: id },
+            { avatarImage: image, isAvatarImageSet: true },
+        );
+
+        return res.json({
             status: true,
-            isSet: updateUser
-        }
+            isSet: updateUser.isAvatarImageSet,
+            imageL: updateUser.avatarImage,
+        });
     } catch (error) {
         next(error);
     }

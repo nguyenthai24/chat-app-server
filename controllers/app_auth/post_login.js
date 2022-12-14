@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
         if (!username || !password) return res.json({ status: false });
 
         let user = await UserModel.findOne({ username: username }).select('-__v');
-        if (!user) return res.json({ msg: 'Incorret username or password' });
+        if (!user) return res.json({ msg: 'Incorret username or password', status: false });
 
         const isPasswordValid = await brcypt.compare(password, user.password);
 
