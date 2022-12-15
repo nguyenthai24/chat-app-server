@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
         return res.json({
             status: true,
             isSet: updateUser.isAvatarImageSet,
-            imageL: updateUser.avatarImage,
+            image: updateUser.avatarImage,
         });
     } catch (error) {
         next(error);
