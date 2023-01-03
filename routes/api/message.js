@@ -8,3 +8,4 @@ const getAllMessage = require('../../controllers/api/message/get_all_message');
 router.post('/message/get-all', getAllMessage);
 
 module.exports = router;
+  
