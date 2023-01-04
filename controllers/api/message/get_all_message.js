@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
                 message: msg.message.text,
             };
         });
-        console.log({projectMessages})
+
         return res.json(projectMessages);
     } catch (err) {
         next(err);

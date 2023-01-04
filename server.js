@@ -32,12 +32,17 @@ io.on('connection', (socket) => {
     global.chatSocket = socket;
     socket.on('add-user', (userId) => {
         onlineUsers.set(userId, socket.id);
+        console.log('1', onlineUsers)
     });
 
     socket.on('send-msg', (data) => {
+        console.log(onlineUsers)
+        console.log(data)
         const sendUserSocket = onlineUsers.get(data.to);
         if(sendUserSocket) {
-            socket.to(sendUserSocket).emit('msg-recieve', data.msg);
+            console.log(124, sendUserSocket)
+            console.log('data', data)
+            io.emit('msg-recieve', data.message);
         }
     })
 
